@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+//Credits to Brackeys for the Basic 2D Movement tutorial 
 public class CharacterMovementController : MonoBehaviour
 {
     [SerializeField] private float jumpForce = 400f;                    //value for force added during jump
