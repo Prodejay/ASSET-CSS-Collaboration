@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class DialogueManager : MonoBehaviour
@@ -8,39 +9,30 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI dialogueText;
 
-    public Animator anim;
+    private Animator anime;
 
-    public bool convoDone;
+    public bool convoFinished;
 
     [HideInInspector]
     public Queue<string> sentences;
-
-    public static DialogueManager instance;
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        DontDestroyOnLoad(gameObject);
-    }
 
     // Start is called before the first frame update
     void Start()
     {
         sentences = new Queue<string>();
+        anime = GetComponent<Animator>();
+
+        anime.SetBool("openDialogue", false);
     }
 
-    public void StartDialogue(Dialogue dialogue)
+    public void StartConvo(Dialogue dialogue)
     {
-        anim.SetBool("isOpen", false);
-        anim.SetBool("isOpen", true);
+        anime.SetBool("openDialogue", true);
+
+        StartCoroutine(loadDialoguePanel());
+
+        GameController.instance.ConversationActive = true;
+
         nameText.text = dialogue.name;
 
         sentences.Clear();
@@ -55,16 +47,18 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextSentence()
     {
-        if (sentences.Count == 0)
-        {
-            EndDialogue();
-            return;
-        }
-
         string sentence = sentences.Dequeue();
 
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
+    }
+
+    public void EndConvo()
+    {
+        convoFinished = true;
+
+        StartCoroutine(loadDialoguePanel());
+        anime.SetBool("openDialogue", false);
     }
 
     IEnumerator TypeSentence(string sentence)
@@ -75,12 +69,16 @@ public class DialogueManager : MonoBehaviour
             dialogueText.text += letter;
             yield return null;
         }
+
+        if (sentences.Count == 0)
+        {
+            EndConvo();
+        }
     }
 
-    public void EndDialogue()
+    IEnumerator loadDialoguePanel()
     {
-        Debug.Log("End of Convo");
-        anim.SetBool("isOpen", false);
-        convoDone = true;
+        yield return new WaitForSeconds(20f);
     }
 }
+
