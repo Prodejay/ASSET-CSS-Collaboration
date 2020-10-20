@@ -6,21 +6,36 @@ public class DialogueTrigger : MonoBehaviour
 {
     public Dialogue dialogue;
 
+    public bool nextSentence = false;
+
     bool playerInRange;
     bool alreadyTalked;
     bool convoStarted;
     public bool thisDialogueDone;
 
+
+    private void Start()
+    {
+        FindObjectOfType<DialogueManager>().convoFinished = false;
+        alreadyTalked = false;
+        convoStarted = false;
+    }
     // Update is called once per frame
     void Update()
     {
         continueTalk();
     }
 
-    void continueTalk()
+    public void goNextSentence()
     {
-        if (!FindObjectOfType<DialogueManager>().convoFinished && Input.GetButtonDown("Attack"))
+        nextSentence = true;
+    }
+
+    public void continueTalk()
+    {
+        if (!FindObjectOfType<DialogueManager>().convoFinished && nextSentence)
         {
+            nextSentence = false;
             FindObjectOfType<DialogueManager>().DisplayNextSentence();
 
             if (FindObjectOfType<DialogueManager>().convoFinished)

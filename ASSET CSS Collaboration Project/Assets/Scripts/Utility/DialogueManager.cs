@@ -6,7 +6,6 @@ using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
-    public TextMeshProUGUI nameText;
     public TextMeshProUGUI dialogueText;
 
     private Animator anime;
@@ -32,10 +31,8 @@ public class DialogueManager : MonoBehaviour
         StartCoroutine(loadDialoguePanel());
 
         GameController.instance.ConversationActive = true;
-
-        nameText.text = dialogue.name;
-
         sentences.Clear();
+       
 
         foreach (string sentence in dialogue.sentences)
         {
@@ -57,6 +54,7 @@ public class DialogueManager : MonoBehaviour
     {
         convoFinished = true;
 
+        GameController.instance.ConversationActive = false;
         StartCoroutine(loadDialoguePanel());
         anime.SetBool("openDialogue", false);
     }
