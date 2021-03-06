@@ -7,6 +7,8 @@ using TMPro;
 public class DialogueManager : MonoBehaviour
 {
     public TextMeshProUGUI dialogueText;
+    public Image characterImageOne;
+    public Image characterImageTwo;
 
     private Animator anime;
 
@@ -27,6 +29,8 @@ public class DialogueManager : MonoBehaviour
     public void StartConvo(Dialogue dialogue)
     {
         anime.SetBool("openDialogue", true);
+        characterImageOne.sprite = dialogue.characterImageOne.sprite;
+        characterImageTwo.sprite = dialogue.characterImageTwo.sprite;
 
         StartCoroutine(loadDialoguePanel());
 
