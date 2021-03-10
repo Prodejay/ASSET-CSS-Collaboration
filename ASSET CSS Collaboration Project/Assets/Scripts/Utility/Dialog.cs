@@ -6,6 +6,7 @@ using TMPro;
 
 public class Dialog : MonoBehaviour
 {
+    private bool triggered = false;
     public TextMeshProUGUI textDisplay;
     public Image characterOne;
     public Image characterTwo;
@@ -41,14 +42,21 @@ public class Dialog : MonoBehaviour
         else
         {
             anime.SetBool("openDialogue", false);
+            GameController.instance.ConversationActive = false;
             continueButton.SetActive(false);
             textDisplay.text = "";
+            triggered = true;
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        anime.SetBool("openDialogue", true);
-        StartCoroutine(Type());
+        if (!triggered)
+        {
+            anime.SetBool("openDialogue", true);
+            GameController.instance.ConversationActive = true;
+            StartCoroutine(Type());
+        }
+        
     }
 }
