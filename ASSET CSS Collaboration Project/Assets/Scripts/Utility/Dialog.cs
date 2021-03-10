@@ -14,10 +14,11 @@ public class Dialog : MonoBehaviour
     public float typingSpeed;
 
     public GameObject continueButton;
+    public Animator anime;
 
     private void Start()
     {
-        StartCoroutine(Type());
+        
     }
 
     IEnumerator Type()
@@ -31,8 +32,6 @@ public class Dialog : MonoBehaviour
 
     public void NextSentence()
     {
-        continueButton.SetActive(false);
-
         if(index < sentences.Length - 1)
         {
             index++;
@@ -41,7 +40,15 @@ public class Dialog : MonoBehaviour
         }
         else
         {
+            anime.SetBool("openDialogue", false);
+            continueButton.SetActive(false);
             textDisplay.text = "";
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        anime.SetBool("openDialogue", true);
+        StartCoroutine(Type());
     }
 }
