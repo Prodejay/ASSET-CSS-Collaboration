@@ -7,21 +7,19 @@ using TMPro;
 public class Country : MonoBehaviour
 {
     public string[] correctAnswer;
+    public Sprite countryImage;
+    private Button thisButton;
 
-    public TMP_InputField inputAnswer;
-
-    public bool answeredCorrectly;
-
-    public void checkAnswer()
+    private void Start()
     {
-        string answer = inputAnswer.text;
+        thisButton = this.gameObject.GetComponent<Button>();
+    }
 
-        foreach(string possibleAnswer in correctAnswer)
-        {
-            if(answer == possibleAnswer)
-            {
-
-            }
-        }
+    public void sendData()
+    {
+        MapActivityController.instance.correctAnswer = correctAnswer;
+        MapActivityController.instance.countryImage.sprite = countryImage;
+        MapActivityController.instance.currentButton = thisButton;
+        MapActivityController.instance.openAnswerPanel();
     }
 }
