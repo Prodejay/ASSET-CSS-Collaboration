@@ -102,6 +102,6 @@ public class MultipleChoiceGameController : MonoBehaviour
 
     public void ContinueButton()
     {
-        SceneManager.LoadScene("EndScene");
+        SceneManager.LoadScene("Day3-Pt. 2");
     }
 }

@@ -120,6 +120,6 @@ public class CrosswordController : MonoBehaviour
 
     public void Continue()
     {
-        Debug.Log("next scene");
+        SceneManager.LoadScene("Day3");
     }
 }

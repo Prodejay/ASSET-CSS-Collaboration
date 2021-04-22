@@ -50,6 +50,7 @@ public class MapActivityController : MonoBehaviour
     public void addScore()
     {
         score++;
+        AudioManager.instance.Play("CorrectSound");
 
         scoreText.text = score + "/11";
         currentButton.interactable = false;
@@ -70,6 +71,7 @@ public class MapActivityController : MonoBehaviour
             else
             {
                 Debug.Log("Wrong Answer");
+                AudioManager.instance.Play("WrongSound");
             }
         }
     }
@@ -81,6 +83,6 @@ public class MapActivityController : MonoBehaviour
 
     public void gameEnd()
     {
-        //go to next scene
+        SceneManager.LoadScene("Day2");
     }
 }
