@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CutsceneManager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class CutsceneManager : MonoBehaviour
 
     private int picsIndex;
     private Animator anime;
+
+    public string activity;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +38,7 @@ public class CutsceneManager : MonoBehaviour
         }
         else
         {
-            //go to activity
+            SceneManager.LoadScene(activity);
         }
         
     }

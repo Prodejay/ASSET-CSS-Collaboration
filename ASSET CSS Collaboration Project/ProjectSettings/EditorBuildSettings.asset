@@ -6,12 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/VillageScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/TitleScreen.unity
+    guid: 9fe937d8f79d4954b846eaf1935db165
+  - enabled: 1
+    path: Assets/Scenes/Day1-Pt. 1.unity
+    guid: 9847ba7f9397d51488320ea0411a5673
   - enabled: 1
     path: Assets/Scenes/QuizActivity.unity
     guid: 22ddf950348b95447ab02bb1a9a80735
   - enabled: 1
-    path: Assets/Scenes/EndScene.unity
-    guid: 595dc63b1474dce489ef8439516632a7
+    path: Assets/Scenes/Crossword.unity
+    guid: ed08ea35ef546ec4e8b435180ec0f2e9
+  - enabled: 1
+    path: Assets/Scenes/MapActivity.unity
+    guid: 3ddbdc8b34baaaf47b008fa3096b4414
   m_configObjects: {}
