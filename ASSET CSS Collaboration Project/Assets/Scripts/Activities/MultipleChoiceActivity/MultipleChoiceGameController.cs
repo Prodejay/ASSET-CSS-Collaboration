@@ -74,7 +74,7 @@ public class MultipleChoiceGameController : MonoBehaviour
         if (isCorrect)
         {
             playerScore += roundData.pointsPerCorrectAnswer;
-            scoreText.text = "Score: " + playerScore.ToString();
+            scoreText.text = "Score " + playerScore.ToString();
         }
         else
         {

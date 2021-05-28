@@ -50,8 +50,8 @@ public class MapActivityController : MonoBehaviour
     public void addScore()
     {
         score++;
-        AudioManager.instance.Play("CorrectSound");
 
+        AudioManager.instance.Play("CorrectSound");
         scoreText.text = score + "/11";
         currentButton.interactable = false;
         answerPanel.SetActive(false);
@@ -61,18 +61,29 @@ public class MapActivityController : MonoBehaviour
     {
         string answer = inputAnswer.text;
 
+        bool answerCorrect = false;
+
         foreach (string possibleAnswer in correctAnswer)
         {
             if (answer == possibleAnswer)
             {
 
-                addScore();
+                answerCorrect = true;
+                break;
             }
             else
             {
-                Debug.Log("Wrong Answer");
-                AudioManager.instance.Play("WrongSound");
+                answerCorrect = false;
             }
+        }
+
+        if (answerCorrect)
+        {
+            addScore();
+        }
+        else
+        {
+            AudioManager.instance.Play("WrongSound");
         }
     }
 

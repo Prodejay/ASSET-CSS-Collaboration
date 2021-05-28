@@ -23,7 +23,7 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-        AudioManager.instance.Play("MainMenu");
+        AudioManager.instance.Play("MainMenu");    
     }
 
     public void playGame()
